@@ -31,4 +31,12 @@ router.get(
   })
 )
 
+// @desc    Get Top products
+// @route   GET /api/products/top  
+// @access  Public
+router.get('/top/:top', asyncHandler(async (req, res) => {
+  const products = await Product.find({}).sort({ rating: -1 }).limit(3)
+  res.json(products)  
+}))
+
 export default router
